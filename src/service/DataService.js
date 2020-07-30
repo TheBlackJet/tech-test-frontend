@@ -40,9 +40,22 @@ export const DataService = {
   //
   //  SAMPLE Normal call
   //
-  // getJobs: () => {
-  //   return axiosClient.get('/jobs')
-  //     .then(result => result.data.map(x => Object.assign({}, x, { id: x.id + '' })))
-  // },
+  getJobs: async () => {
+    try{
+      return  await axiosClient.get('/jobs');
+    }catch(error){
+      console.log("error", error);
+    }
+    
+  },
+
+  getContacts: async () => {
+    try{
+      return  await axiosClient.get('/contacts');
+    }catch(error){
+      console.log("error", error);
+    }
+    
+  },
   
 }
