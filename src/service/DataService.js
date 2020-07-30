@@ -8,7 +8,18 @@ const graphClient = new ApolloClient({
 
 const axiosClient = Axios.create({
   baseURL: 'http://localhost:3400'
-})
+});
+
+const getDataFromAPIPath = async (path) => {
+  try {
+    const response = await axiosClient.get(path);
+    return response.data;
+  } catch (error) {
+    return {
+      error : true,
+    }
+  }
+}
 
 export const DataService = {
   //
@@ -37,25 +48,16 @@ export const DataService = {
   //     .then(data => data.jobs)
   // },
 
-  //
-  //  SAMPLE Normal call
-  //
   getJobs: async () => {
-    try{
-      return  await axiosClient.get('/jobs');
-    }catch(error){
-      console.log("error", error);
-    }
-    
+    return await getDataFromAPIPath('/jobs');
+  },
+
+  getJobsWithContactByQuery: async (query = null, parentEntity = null) => {
+    return await getDataFromAPIPath(`/jobs?q=${query}&_expand=${parentEntity}`);
   },
 
   getContacts: async () => {
-    try{
-      return  await axiosClient.get('/contacts');
-    }catch(error){
-      console.log("error", error);
-    }
-    
+    return await getDataFromAPIPath('/contacts');
   },
-  
+
 }
