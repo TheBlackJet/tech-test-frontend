@@ -31,6 +31,22 @@
       "start": "2018-09-01T13:00:00Z",
       "end": "2018-09-01T13:15:00Z",
       "location": "Brisbane"
+    },
+    {
+      "id": 4,
+      "name": "Paint the roof",
+      "contactId": "1",
+      "start": "2018-09-01T16:00:00Z",
+      "end": "2018-09-01T17:00:00Z",
+      "location": "Melbourne"
+    },
+    {
+      "id": 5,
+      "name": "Install ceiling fan",
+      "contactId": "2",
+      "start": "2018-09-01T17:00:00Z",
+      "end": "2018-09-01T18:00:00Z",
+      "location": "Sydney"
     }
   ],
   "contacts": [
@@ -43,7 +59,7 @@
       "name": "Jane Smith"
     },
     {
-      "id": 1,
+      "id": 2,
       "name": "Another Person"
     }
   ],
@@ -85,6 +101,16 @@
       "id": 1,
       "resourceId": 0,
       "jobId": 2
+    },
+    {
+      "id": 2,
+      "resourceId": 0,
+      "jobId": 4
+    },
+    {
+      "id": 3,
+      "resourceId": 1,
+      "jobId": 4
     }
   ],
   "activityAllocations": [

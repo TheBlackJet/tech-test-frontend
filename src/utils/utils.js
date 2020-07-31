@@ -1,5 +1,4 @@
 /* getProp utility function equivalence to lodash _.get(...) to check the existence of prop, return data of prop if data presence otherwise return default value
-* @author @harish2704
 * @param {Object} object
 * @param {String|Array} keys
 * @param {any} defaultValue
