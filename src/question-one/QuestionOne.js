@@ -21,6 +21,7 @@ const initialState = {
 // write test
 // add break to cancel the request
 // check edge case, no result case
+// try catch
 
 
 export const QuestionOne = ({ service }) => {

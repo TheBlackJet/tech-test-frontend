@@ -52,6 +52,10 @@ export const DataService = {
     return await getDataFromAPIPath('/jobs');
   },
 
+  getJobAllocations: async () => {
+    return await getDataFromAPIPath(`/jobAllocations`);
+  },
+
   getJobsWithContactByQuery: async (query = null, parentEntity = null) => {
     return await getDataFromAPIPath(`/jobs?q=${query}&_expand=${parentEntity}`);
   },
@@ -60,4 +64,15 @@ export const DataService = {
     return await getDataFromAPIPath('/contacts');
   },
 
+  getActivities: async () => {
+    return await getDataFromAPIPath('/activities');
+  },
+
+  getActivityAllocations: async () => {
+    return await getDataFromAPIPath(`/activityAllocations`);
+  },
+
+  getResources: async () => {
+    return await getDataFromAPIPath(`/resources`);
+  },
 }
