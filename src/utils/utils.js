@@ -18,7 +18,7 @@ export const getProp = (obj, path, defaultValue = undefined) => {
 * @param {string} utcTime : time in UTC format
 * @return {string} locale string time
 */
-export const convertUTCTimeToLocaleString = (utcTime) => new Date(utcTime).toLocaleString();
+export const convertUTCTimeToDateString = (utcTime) => new Date(utcTime).toDateString();
 
 
 /* check if array has element or null

@@ -13,6 +13,7 @@ const RANGE_END = new Date('2018-09-01T24:00:00Z')
 
 export const QuestionTwo = ({service}) => {
   const [ workforceEventData ] = useSwimlaneData({service});
+
   return (
     <SectionGroup>
       <SectionPanel>
