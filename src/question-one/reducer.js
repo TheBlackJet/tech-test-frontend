@@ -5,7 +5,7 @@ import {
     Q1_FETCH_ALL_JOBS_FROM_API_SUCCESS,
     Q1_FETCH_ALL_JOBS_FROM_API_FAILURE,
     Q1_CLEAR_RESULT_LIST
-  } from './consts';
+  } from '../constants/app_conts';
 
 export const searchReducer = (state, action) => {
     switch (action.type) {

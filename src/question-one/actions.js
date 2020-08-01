@@ -4,10 +4,9 @@ import {
     Q1_FETCH_ALL_JOBS_FROM_API_SUCCESS,
     Q1_FETCH_ALL_JOBS_FROM_API_FAILURE,
     Q1_CLEAR_RESULT_LIST
-} from './consts';
+} from '../constants/app_conts';
 
-// action creator 
-
+// action creators 
 export const changeSearchInputValue = (value) => ({
     type: Q1_CHANGE_VALUE_OF_SEARCH_INPUT,
     payload: value
@@ -18,7 +17,7 @@ export const initFetchAllJobsFromAPI = () => ({
     type: Q1_FETCH_ALL_JOBS_FROM_API_INIT,
 });
 
-export const fetchAllJobsFromAPISuccess = (data) => ({
+export const fetchAllJobsFromAPISuccess = (data = []) => ({
     type: Q1_FETCH_ALL_JOBS_FROM_API_SUCCESS,
     payload: data
 });

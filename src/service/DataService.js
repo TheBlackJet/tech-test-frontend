@@ -1,19 +1,22 @@
-import ApolloClient from 'apollo-boost';
-import gql from 'graphql-tag';
+// import ApolloClient from 'apollo-boost';
+// import gql from 'graphql-tag';
 import Axios from 'axios';
 
-const graphClient = new ApolloClient({
-  uri: 'http://localhost:3500/graphql'
-});
+import { API_PATH, API_ENDPOINTS } from '../constants/app_conts'; 
+import { getProp } from '../utils/utils';
+
+// const graphClient = new ApolloClient({
+//   uri: API_ENDPOINTS.GRAPHQL_SERVER
+// });
 
 const axiosClient = Axios.create({
-  baseURL: 'http://localhost:3400'
+  baseURL: API_ENDPOINTS.JSON_SERVER
 });
 
-const getDataFromAPIPath = async (path) => {
+const getDataFromAPIPath = async (path = API_PATH.DEFAULT) => {
   try {
     const response = await axiosClient.get(path);
-    return response.data;
+    return getProp(response, 'data', []);
   } catch (error) {
     return {
       error : true,
@@ -22,57 +25,32 @@ const getDataFromAPIPath = async (path) => {
 }
 
 export const DataService = {
-  //
-  //  SAMPLE GraphQL Call
-  //
-  // getJobsWithSearchTerm: (searchTerm) => {
-  //   return graphClient.query({
-  //     query: gql`
-  //     query ($searchTerm: String){
-  //       jobs(name: $searchTerm) {
-  //         name,
-  //         start,
-  //         end,
-  //         contact {
-  //           id
-  //           name
-  //         }
-  //       }
-  //     }
-  //     `,
-  //     variables: {
-  //       searchTerm: searchTerm
-  //     }
-  //   })
-  //     .then(result => result.data)
-  //     .then(data => data.jobs)
-  // },
 
   getJobs: async () => {
-    return await getDataFromAPIPath('/jobs');
+    return await getDataFromAPIPath(API_PATH.JOBS);
   },
 
   getJobAllocations: async () => {
-    return await getDataFromAPIPath(`/jobAllocations`);
+    return await getDataFromAPIPath(API_PATH.JOB_ALLOCATIONS);
   },
 
   getJobsWithContactByQuery: async (query = null, parentEntity = null) => {
-    return await getDataFromAPIPath(`/jobs?q=${query}&_expand=${parentEntity}`);
+    return await getDataFromAPIPath(`${API_PATH.JOBS}?q=${query}&_expand=${parentEntity}`);
   },
 
   getContacts: async () => {
-    return await getDataFromAPIPath('/contacts');
+    return await getDataFromAPIPath(API_PATH.CONTACTS);
   },
 
   getActivities: async () => {
-    return await getDataFromAPIPath('/activities');
+    return await getDataFromAPIPath(API_PATH.ACTIVITIES);
   },
 
   getActivityAllocations: async () => {
-    return await getDataFromAPIPath(`/activityAllocations`);
+    return await getDataFromAPIPath(API_PATH.ACTIVITY_ALLOCATIONS);
   },
 
   getResources: async () => {
-    return await getDataFromAPIPath(`/resources`);
+    return await getDataFromAPIPath(API_PATH.RESOURCES);
   },
 }

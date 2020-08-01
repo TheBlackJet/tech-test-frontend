@@ -1,24 +1,24 @@
 
 import { useEffect, useState } from 'react';
-import { getProp } from '../utils/utils';
 
-const appendZeroToOneDigitTime= (time) => {
-    return String(time).padStart(2, "0");
-}
+import { getProp, isArrayEmpty } from '../utils/utils';
+import { appendZeroToOneDigitTime } from './helpers';
 
-export const useJobsDataFromAPI = ({ service }) => {
+export const useJobsData = ({ service }) => {
     const [ jobData, setJobData ] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 // get all related data
-                const allJob = await service.getJobs();
-                const allJobAllocation = await service.getJobAllocations();
+                const allJobData = await service.getJobs();
+                const allJobList = isArrayEmpty(allJobData) ? [] : allJobData;
+                const allJobAllocationData = await service.getJobAllocations();
+                const allJobAllocationList = isArrayEmpty(allJobAllocationData) ? [] : allJobAllocationData;
 
                 // build job list with number of allocated resource
-                const jobsWithAllocatedResource = allJob.map((item) => {
-                    const numberOfAllocation = allJobAllocation.filter((alloc) => alloc.jobId === item.id);
+                const jobsWithAllocatedResource = isArrayEmpty(allJobList) ? [] : allJobList.map((item) => {
+                    const numberOfAllocation = isArrayEmpty(allJobAllocationList) ? [] : allJobAllocationList.filter((alloc) => getProp(alloc, 'jobId', null) === getProp(item, 'id', null));
                     const startDate = new Date(getProp(item, 'start', null));
                     const endDate = new Date(getProp(item, 'end', null));
                     const startDateString = startDate.toDateString();
@@ -46,8 +46,8 @@ export const useJobsDataFromAPI = ({ service }) => {
         fetchData();
     }, []);
 
-    return {
+    return [
         jobData
-    }
+    ]
 
 }
