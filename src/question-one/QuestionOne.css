@@ -1,0 +1,39 @@
+.question-one__result-wrapper{
+    padding: 10px 0px 10px 0px;
+}
+
+.question-one__result-item, .question-one__result-item--header{
+    flex-direction: row;
+    justify-content: space-between;
+    display: flex;
+    padding: 10px 0px 10px 0px;
+    border-bottom: 1px solid grey;
+}
+
+.question-one__result-item--header{
+    height: unset;
+    border-bottom: 2px solid grey;
+    /* padding-bottom: 10px; */
+    font-weight: bold;
+}
+
+.loading{
+    text-align: center;
+    color: teal;
+}
+
+.loader-img{
+    width: 100px;
+    height: 50px;
+}
+
+.network-error{
+    text-align: center;
+    color: red;
+    font-weight: bold;
+}
+
+.no-result{
+    text-align: center;
+    font-weight: bold;
+}

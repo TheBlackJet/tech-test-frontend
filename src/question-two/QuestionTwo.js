@@ -1,8 +1,8 @@
 import React from 'react';
-
 import { SectionGroup } from '../components/section/SectionGroup'
 import { SectionPanel } from '../components/section/SectionPanel'
-
+import { Swimlane } from '../components/swimlane/Swimlane';
+import { useSwimlaneData } from './customHooks';
 import './QuestionTwo.css';
 
 /**
@@ -11,11 +11,13 @@ import './QuestionTwo.css';
 const RANGE_START = new Date('2018-09-01T00:00:00Z')
 const RANGE_END = new Date('2018-09-01T24:00:00Z')
 
-export const QuestionTwo = (props) => {
+export const QuestionTwo = ({service}) => {
+  const [ workforceEventData ] = useSwimlaneData({service});
+
   return (
     <SectionGroup>
       <SectionPanel>
-        Please refer to INSTRUCTIONS.md
+        <Swimlane start={RANGE_START} end={RANGE_END} lanes={workforceEventData} />
       </SectionPanel>
     </SectionGroup>
   )
